@@ -305,6 +305,15 @@ func WithMQTTConnection(connection generic.Connection) Option {
 	}
 }
 
+// WithAMQPConnection configures a connection to an AMQP Broker.
+func WithAMQPConnection(connection generic.Connection) Option {
+	return func(e *MicrocksContainersEnsemble) error {
+		e.asyncMinionContainerOptions.Add(async.WithAMQPConnection(connection))
+		return nil
+	}
+}
+
+
 // WithAmazonSQSConnection configures a connection to an Amazon SQS service.
 func WithAmazonSQSConnection(connection amazonservice.Connection) Option {
 	return func(e *MicrocksContainersEnsemble) error {
